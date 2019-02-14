@@ -26,7 +26,7 @@ The following variables should not be edited as these are controlled and used th
 | ip_oct4_set | Yes | True | A boolean used to determine if the user set their own octet or not |
 | good_ips | Yes | [ ] | Empty array to later be used to hold all the pingable IPs |
 
-The following variables should be edited as needed for your enviornment.
+The following variables can be edited as needed for your enviornment (optional).
 
 | Variable  | Required | Default | Description |
 | ------------- | ------------- | ------------- | ------------- |
