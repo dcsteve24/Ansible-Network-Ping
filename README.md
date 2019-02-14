@@ -61,6 +61,10 @@ Similary you can do this with any octet. So if you want to try all 192.X.X.1 add
 
 Finally you can edit the range to not look at the entire 255 block by editing the start/end variable for each octet. So to look at 192.168.100.150-250, hard set the ip_oct1-3, leave ip_oct4 as [ ], edit ip_oct4_start to be 150, and ip_oct4_end to be 250. similar approaches can be done with each octet.
 
+Gotchas
+--------------
+Depending on OS, you may need to edit any '100% packet loss' lines to reflect what you actually get on a failed ping. For example: some OS report back '100.0% packet loss', which would cause this play to do unexpected actions.
+
 Author Information
 ------------------
 Steven Craig, 14Feb19
