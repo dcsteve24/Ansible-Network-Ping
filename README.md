@@ -34,7 +34,7 @@ The following variables should be edited as needed for your enviornment.
 | ip_oct2 | Yes | [ ] | The second octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 168. If hard set, this will null out the ranges for this octet |
 | ip_oct3 | Yes | [ ] | The third octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 100. If hard set, this will null out the ranges for this octet |
 | ip_oct4 | Yes | [ ] | The first octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 1. If hard set, this will null out the ranges for this octet |
-| ip_oct1_start | No | 0 | Unused if ip_oct1 is hard set. If ip_oct1 is left as [ ], this controls the start of the range that's pinged |
+| ip_oct1_start | Depends | 0 | Unused if ip_oct1 is hard set. If ip_oct1 is left as [ ], this controls the start of the range that's pinged |
 | ip_oct1_end | Depends | 255 | Unused if ip_oct1 is hard set. If ip_oct1 is left as [ ], this controls the end of the range that's pinged |
 | ip_oct2_start | Depends | 0 | Unused if ip_oct2 is hard set. If ip_oct2 is left as [ ], this controls the start of the range that's pinged |
 | ip_oct2_end | Depends | 255 | Unused if ip_oct2 is hard set. If ip_oct2 is left as [ ], this controls the end of the range that's pinged |
