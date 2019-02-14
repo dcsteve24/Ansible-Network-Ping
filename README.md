@@ -54,6 +54,10 @@ This will run straight out of the box, but will take forever as it is testing ev
 3. (optional) Change the variables under "Edit me as needed" for your desired results.
 4. Run the play; I typically run mine with ansible-playbook -kK path_to_play.
 
+Errors are a inherit part of this script and this script utilzes the errors to manipulate the flow. While I have no_log set in these locations, you will still see "failed". This is perfectly ok. The script will continue if it errors in the expected spots; if your script stopped, somethign is legitatmitely wrong. You should see failed in the following locations:
+    - Task 1-4 if you hard set any of the octets
+    - The task where it starts pinging IPs (any unreachable IP)
+
 Customization
 -------------- 
 Edit any of the ip_oct# variables as needed and hardset them. i.e. if you want to attempt to ping all 192.168.100.X addresses; put 192 in ip_oct1, 168 in ip_oct2, 100 in ip_oct3 and leave ip_oct4 as [ ].
