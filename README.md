@@ -1,5 +1,5 @@
 # Ansible-Network-Ping
-A fully customizable script that will network ping (ICMP) specified ranges
+A fully customizable play that will network ping (ICMP) specified ranges
 
 This is a quick play to run on a single target that will create a list of IPs it can network ping (not ansible ping). I designed this since ansible doesnt have a module for network pinging, as their ping module checks SSH/login capabilities; and many argue that you are trying to make a firetruck do an ambulance's job. 
 
@@ -54,7 +54,7 @@ This will run straight out of the box, but will take forever as it is testing ev
 3. (optional) Change the variables under "Edit me as needed" for your desired results.
 4. Run the play; I typically run mine with ansible-playbook -kK path_to_play.
 
-Errors are a inherit part of this script and this script utilzes the errors to manipulate the flow. While I have no_log set in these locations, you will still see "failed". This is perfectly ok. The script will continue if it errors in the expected spots; if your script stopped, somethign is legitatmitely wrong. You should see failed in the following locations:
+Errors are a inherit part of this play and this play utilzes the errors to manipulate the flow. While I have no_log set in these locations, you will still see "failed". This is perfectly ok. The play will continue if it errors in the expected spots; if your play stopped, something is legitatmitely wrong. You could see failed in the following locations:
     - Task 1-4 if you hard set any of the octets
     - The task where it starts pinging IPs (any unreachable IP)
 
