@@ -16,8 +16,9 @@ N/A
 
 Role Variables
 --------------
-The following variables should not be edited as these are controlled and used throughout the play
-| Variable  | Required | Default | Description
+The following variables should not be edited as these are controlled and used throughout the play.
+
+| Variable  | Required | Default | Description |
 | ------------- | ------------- | ------------- | ------------- |
 | ip_oct1_set | No  | True | A boolean used to determine if the user set their own octet or not |
 | ip_oct2_set | No | True | A boolean used to determine if the user set their own octet or not |
@@ -25,21 +26,22 @@ The following variables should not be edited as these are controlled and used th
 | ip_oct4_set | No | True | A boolean used to determine if the user set their own octet or not |
 | good_ips | No | [ ] | Empty array to later be used to hold all the pingable IPs |
 
-The following variables should be edited as needed for your enviornment
-| Variable  | Required | Default | Description
+The following variables should be edited as needed for your enviornment.
+
+| Variable  | Required | Default | Description |
 | ------------- | ------------- | ------------- | ------------- |
 | ip_oct1 | No | [ ] | The first octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 192. If hard set, this will null out the ranges for this octet |
 | ip_oct2 | No | [ ] | The second octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 168. If hard set, this will null out the ranges for this octet |
 | ip_oct3 | No | [ ] | The third octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 100. If hard set, this will null out the ranges for this octet |
 | ip_oct4 | No | [ ] | The first octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 1. If hard set, this will null out the ranges for this octet |
 | ip_oct1_start | No | 0 | Unused if ip_oct1 is hard set. If ip_oct1 is left as [ ], this controls the start of the range that's pinged |
-| ip_oct1_end | No | 0 | Unused if ip_oct1 is hard set. If ip_oct1 is left as [ ], this controls the end of the range that's pinged|
+| ip_oct1_end | No | 255 | Unused if ip_oct1 is hard set. If ip_oct1 is left as [ ], this controls the end of the range that's pinged |
 | ip_oct2_start | No | 0 | Unused if ip_oct2 is hard set. If ip_oct2 is left as [ ], this controls the start of the range that's pinged |
-| ip_oct2_end | No | 0 | Unused if ip_oct2 is hard set. If ip_oct2 is left as [ ], this controls the end of the range that's pinged|
+| ip_oct2_end | No | 255 | Unused if ip_oct2 is hard set. If ip_oct2 is left as [ ], this controls the end of the range that's pinged |
 | ip_oct3_start | No | 0 | Unused if ip_oct3 is hard set. If ip_oct3 is left as [ ], this controls the start of the range that's pinged |
-| ip_oct3_end | No | 0 | Unused if ip_oct3 is hard set. If ip_oct3 is left as [ ], this controls the end of the range that's pinged|
+| ip_oct3_end | No | 255 | Unused if ip_oct3 is hard set. If ip_oct3 is left as [ ], this controls the end of the range that's pinged |
 | ip_oct4_start | No | 0 | Unused if ip_oct4 is hard set. If ip_oct4 is left as [ ], this controls the start of the range that's pinged |
-| ip_oct4_end | No | 0 | Unused if ip_oct4 is hard set. If ip_oct4 is left as [ ], this controls the end of the range that's pinged|
+| ip_oct4_end | No | 255 | Unused if ip_oct4 is hard set. If ip_oct4 is left as [ ], this controls the end of the range that's pinged |
 | retry | No | 0 | Determines amount of times to try the same IP if it fails |
 | save_path | No | "/tmp/good_ips{{ ansible_date_time.date }}\_{{ ansible_date_time.time }}.txt" | Save location of the pingable ips |
 
