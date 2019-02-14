@@ -1,0 +1,105 @@
+---
+- hosts: localhost
+  remote_user: 
+  become: true
+  vars:
+#Do not edit me
+    - ip_oct1_set: true
+    - ip_oct2_set: true
+    - ip_oct3_set: true
+    - ip_oct4_set: true
+    - good_ips: []
+# ------------------
+# Edit me for your needs
+    - ip_oct1: []
+    - ip_oct2: []
+    - ip_oct3: []
+    - ip_oct4: []
+    - ip_oct1_start: 0
+    - ip_oct1_end: 255
+    - ip_oct2_start: 0
+    - ip_oct2_end: 255
+    - ip_oct3_start: 0
+    - ip_oct3_end: 255
+    - ip_oct4_start: 0
+    - ip_oct4_end: 255
+    - retry: 1
+
+  tasks:
+    - name: Check oct1 is set
+      set_fact:
+        ip_oct1_set: false
+      no_log: true
+      ignore_errors: true
+      when: ( ip_oct1 | length == 0 )
+    
+    - name: Check oct2 is set
+      set_fact:
+        ip_oct2_set: false
+      no_log: true
+      ignore_errors: true
+      when: ( ip_oct2 | length == 0 )
+      
+    - name: Check oct3 is set
+      set_fact:
+        ip_oct3_set: false
+      no_log: true
+      ignore_errors: true
+      when: ( ip_oct3 | length == 0 )
+      
+    - name: Check oct4 is set
+      set_fact:
+        ip_oct4_set: false
+      no_log: true
+      ignore_errors: true
+      when: ( ip_oct4 | length == 0 )
+      
+    - name: Set oct1
+      set_fact:
+        ip_oct1: "{{ ip_oct1 + [ item ] }}"
+      with_sequence: "start={{ ip_oct1_start }} end={{ ip_oct1_end }}"
+      when: ip_oct1_set == false
+      
+    - name: Set oct2
+      set_fact:
+        ip_oct2: "{{ ip_oct2 + [ item ] }}"
+      with_sequence: "start={{ ip_oct2_start }} end={{ ip_oct2_end }}"
+      when: ip_oct2_set == false
+      
+    - name: Set oct3
+      set_fact:
+        ip_oct3: "{{ ip_oct3 + [ item ] }}"
+      with_sequence: "start={{ ip_oct3_start }} end={{ ip_oct3_end }}"
+      when: ip_oct3_set == false
+      
+    - name: Set oct4
+      set_fact:
+        ip_oct4: "{{ ip_oct4 + [ item ] }}"
+      with_sequence: "start={{ ip_oct4_start }} end={{ ip_oct4_end }}"
+      when: ip_oct4_set == false
+      
+    - name: Ping the specified IP Ranges
+      local_action: "shell ping -a -c 1 -W 1 {{ item[0] }}.{{ item[1] }}.{{ item[2] }}.{{ item[3] }}"
+      register: result
+      retries: {{ retry }}
+      until: ('100% packet loss' not in result.stdout)
+      failed_when: ('100% packet loss' in result.stdout)
+      changed_when: false
+      ignore_errors: true
+      no_log: true
+      with_nested:
+        - "{{ ip_oct1 }}"
+        - "{{ ip_oct2 }}"
+        - "{{ ip_oct3 }}"
+        - "{{ ip_oct4 }}"
+        
+    - name: Set good_ip variable
+      set_facts:
+        good_ips: "{{ good_ips }} + [ '{{ item.stdout | regex_search('\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b') }}' ]"
+      no_log: true
+      when: "'100% packet loss' not in item.stdout"
+      with_items: "{{ result.results }}"
+      
+    - name: give pretty list of good ips
+      debug:
+        var: good_ips
