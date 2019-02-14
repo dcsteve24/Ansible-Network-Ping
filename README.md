@@ -20,30 +20,30 @@ The following variables should not be edited as these are controlled and used th
 
 | Variable  | Required | Default | Description |
 | ------------- | ------------- | ------------- | ------------- |
-| ip_oct1_set | No  | True | A boolean used to determine if the user set their own octet or not |
-| ip_oct2_set | No | True | A boolean used to determine if the user set their own octet or not |
-| ip_oct3_set | No | True | A boolean used to determine if the user set their own octet or not |
-| ip_oct4_set | No | True | A boolean used to determine if the user set their own octet or not |
-| good_ips | No | [ ] | Empty array to later be used to hold all the pingable IPs |
+| ip_oct1_set | Yes  | True | A boolean used to determine if the user set their own octet or not |
+| ip_oct2_set | Yes | True | A boolean used to determine if the user set their own octet or not |
+| ip_oct3_set | Yes | True | A boolean used to determine if the user set their own octet or not |
+| ip_oct4_set | Yes | True | A boolean used to determine if the user set their own octet or not |
+| good_ips | Yes | [ ] | Empty array to later be used to hold all the pingable IPs |
 
 The following variables should be edited as needed for your enviornment.
 
 | Variable  | Required | Default | Description |
 | ------------- | ------------- | ------------- | ------------- |
-| ip_oct1 | No | [ ] | The first octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 192. If hard set, this will null out the ranges for this octet |
-| ip_oct2 | No | [ ] | The second octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 168. If hard set, this will null out the ranges for this octet |
-| ip_oct3 | No | [ ] | The third octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 100. If hard set, this will null out the ranges for this octet |
-| ip_oct4 | No | [ ] | The first octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 1. If hard set, this will null out the ranges for this octet |
+| ip_oct1 | Yes | [ ] | The first octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 192. If hard set, this will null out the ranges for this octet |
+| ip_oct2 | Yes | [ ] | The second octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 168. If hard set, this will null out the ranges for this octet |
+| ip_oct3 | Yes | [ ] | The third octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 100. If hard set, this will null out the ranges for this octet |
+| ip_oct4 | Yes | [ ] | The first octect in the IPs that will be looked at. Defaults to an empty array which is filled with 0-255. Can be hard set if desired; e.g. 1. If hard set, this will null out the ranges for this octet |
 | ip_oct1_start | No | 0 | Unused if ip_oct1 is hard set. If ip_oct1 is left as [ ], this controls the start of the range that's pinged |
-| ip_oct1_end | No | 255 | Unused if ip_oct1 is hard set. If ip_oct1 is left as [ ], this controls the end of the range that's pinged |
-| ip_oct2_start | No | 0 | Unused if ip_oct2 is hard set. If ip_oct2 is left as [ ], this controls the start of the range that's pinged |
-| ip_oct2_end | No | 255 | Unused if ip_oct2 is hard set. If ip_oct2 is left as [ ], this controls the end of the range that's pinged |
-| ip_oct3_start | No | 0 | Unused if ip_oct3 is hard set. If ip_oct3 is left as [ ], this controls the start of the range that's pinged |
-| ip_oct3_end | No | 255 | Unused if ip_oct3 is hard set. If ip_oct3 is left as [ ], this controls the end of the range that's pinged |
-| ip_oct4_start | No | 0 | Unused if ip_oct4 is hard set. If ip_oct4 is left as [ ], this controls the start of the range that's pinged |
-| ip_oct4_end | No | 255 | Unused if ip_oct4 is hard set. If ip_oct4 is left as [ ], this controls the end of the range that's pinged |
-| retry | No | 0 | Determines amount of times to try the same IP if it fails |
-| save_path | No | "/tmp/good_ips{{ ansible_date_time.date }}\_{{ ansible_date_time.time }}.txt" | Save location of the pingable ips |
+| ip_oct1_end | Depends | 255 | Unused if ip_oct1 is hard set. If ip_oct1 is left as [ ], this controls the end of the range that's pinged |
+| ip_oct2_start | Depends | 0 | Unused if ip_oct2 is hard set. If ip_oct2 is left as [ ], this controls the start of the range that's pinged |
+| ip_oct2_end | Depends | 255 | Unused if ip_oct2 is hard set. If ip_oct2 is left as [ ], this controls the end of the range that's pinged |
+| ip_oct3_start | Depends | 0 | Unused if ip_oct3 is hard set. If ip_oct3 is left as [ ], this controls the start of the range that's pinged |
+| ip_oct3_end | Depends | 255 | Unused if ip_oct3 is hard set. If ip_oct3 is left as [ ], this controls the end of the range that's pinged |
+| ip_oct4_start | Depends | 0 | Unused if ip_oct4 is hard set. If ip_oct4 is left as [ ], this controls the start of the range that's pinged |
+| ip_oct4_end | Depends | 255 | Unused if ip_oct4 is hard set. If ip_oct4 is left as [ ], this controls the end of the range that's pinged |
+| retry | Yes | 0 | Determines amount of times to try the same IP if it fails |
+| save_path | Yes | "/tmp/good_ips{{ ansible_date_time.date }}\_{{ ansible_date_time.time }}.txt" | Save location of the pingable ips |
 
 How to Run
 --------------
@@ -54,7 +54,8 @@ This will run straight out of the box, but will take forever as it is testing ev
 3. (optional) Change the variables under "Edit me as needed" for your desired results.
 4. Run the play; I typically run mine with ansible-playbook -kK path_to_play.
 
-# Customization 
+Customization
+-------------- 
 Edit any of the ip_oct# variables as needed and hardset them. i.e. if you want to attempt to ping all 192.168.100.X addresses; put 192 in ip_oct1, 168 in ip_oct2, 100 in ip_oct3 and leave ip_oct4 as [ ].
 
 Similary you can do this with any octet. So if you want to try all 192.X.X.1 addresses; put 192 in ip_oct1, leave ip_oct2 and 3 alone, and put 1 in ip_oct4.
