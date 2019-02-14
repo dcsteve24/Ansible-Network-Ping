@@ -5,6 +5,11 @@ This is a quick play to run on a single target that will create a list of IPs it
 
 But I am stubborn and this became more of a "Can I do it?" project than a useability one since this can easily be scripted in bash, or done with NMAP, but may be useful for some. I have generalized the play to the point, you can run it against all and every range possible, but note, the larger the range, the signifigantly longer this will take.
 
+Results
+------------
+1. The play will output the pingable IPs
+2. If defaults are not changed, the same output from 1 is saved to a text file /tmp/good_ipsDATE_TIME.txt on the target
+
 Requirements
 ------------
 An account that can SSH into the target
