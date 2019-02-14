@@ -23,7 +23,8 @@
     - ip_oct3_end: 255
     - ip_oct4_start: 0
     - ip_oct4_end: 255
-    - retry: 1
+    - retry: 0
+    - save_path: "/tmp/good_ips{{ ansible_date_time.date }}_{{ ansible_date_time.time }}.txt"
 
   tasks:
     - name: Check oct1 is set
@@ -103,3 +104,12 @@
     - name: give pretty list of good ips
       debug:
         var: good_ips
+
+    - name: Make the file containing good_ips
+      copy:
+        content: "{{ good_ips }}"
+        dest: "{{ save_path }}"
+        
+    - name: Inform where the file was made
+      debug:
+        msg: "A file has been made containing everything that was pingable: {{ save_path }}"
