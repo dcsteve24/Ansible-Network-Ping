@@ -55,6 +55,7 @@ This will run straight out of the box, but will take forever as it is testing ev
 4. Run the play; I typically run mine with ansible-playbook -kK path_to_play.
 
 Errors are a inherit part of this play and this play utilzes the errors to manipulate the flow. While I have no_log set in these locations, you will still see "failed". This is perfectly ok. The play will continue if it errors in the expected spots; if your play stopped, something is legitatmitely wrong. You could see failed in the following locations:
+
     - Task 1-4 if you hard set any of the octets
     - The task where it starts pinging IPs (any unreachable IP)
 
