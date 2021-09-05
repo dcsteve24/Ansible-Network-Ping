@@ -70,7 +70,3 @@ Finally you can edit the range to not look at the entire 255 block by editing th
 Gotchas
 --------------
 Depending on OS, you may need to edit any '100% packet loss' lines to reflect what you actually get on a failed ping. For example: some OS report back '100.0% packet loss', which would cause this play to do unexpected actions.
-
-Author Information
-------------------
-Steven Craig, 14Feb19
